@@ -1,0 +1,5 @@
+1.每个事件间隔时间100毫秒，100000个事件
+monkey -p org.elastos.trinity.runtime --throttle 100 100000
+
+2.限制事件比例
+monkey -p org.elastos.trinity.runtime --throttle 100 --pct-touch 60 --pct-motion 20 100000
