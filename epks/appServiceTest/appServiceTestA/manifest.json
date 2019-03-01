@@ -1,0 +1,21 @@
+{
+  "id": "org.elastos.trinity.appservicetestA",
+  "version": "0.0.1",
+  "name": "serviceTestA",
+  "short_name": "serviceTestA",
+  "description": "service Test",
+  "start_url": "index.html",
+  "icons": [
+    {
+        "src": "img/logo.png",
+        "sizes": "200x200",
+        "type": "image/png"
+    }
+  ],
+  "author": {
+      "name": "raozhiming",
+      "email": "raozhiming@elastos.org"
+  },
+  "default_locale": "en",
+  "background_color": "#4e8ef7"
+}

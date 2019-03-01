@@ -1,0 +1,30 @@
+{
+  "id": "org.elastos.trinity.event",
+  "version": "0.0.1",
+  "name": "event",
+  "short_name": "event",
+  "description": "event Test",
+  "start_url": "index.html",
+  "icons": [
+    {
+        "src": "img/logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    },
+    {
+      "src": "img/logo.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "author": {
+    "name": "mytest19",
+      "email": "raozhiming@elastos.org"
+  },
+  "default_locale": "en",
+  "urls": [
+    "http://www.baidu.com/*",
+    "https://www.google.com"
+  ],
+  "background_color": "#4e8ef7"
+}
