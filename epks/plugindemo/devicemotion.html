@@ -28,37 +28,37 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <script type="text/javascript" src="assets://www/cordova.js"></script>
+<!--         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no"> -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <script type="text/javascript" src="assets://www/cordova.js"></script>
+<!--         <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery.mobile-1.4.5.js"></script> -->
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
         <title>Hello World</title>
     </head>
     <body>
+        <div data-role="header" role="banner" class="ui-header ui-bar-inherit" data-position="fixed">
+            <h1 class="ui-title" role="heading" aria-level="1">DeviceMotion</h1>
+            <a href="index.html" class="ui-btn-left ui-btn ui-icon-arrow-l ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button"
+                role="button"></a>
+        </div>
         <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+            <img id="icon" src="img/logo.png" class="icon"/>
+            <p class="splitLine"></p>
             <div>
-                <input type="button" value="Prepare" id="btnPrepare">
-                <input type="button" value="Start Scan" id="btnScan">
-                <hr />
-                <input type="button" value="Show" id="btnShow">
-                <input type="button" value="Hide" id="btnHide">
-                <input type="button" value="Cancel Scan" id="btnCancel">
-                <input type="button" value="Destroy" id="btnDestroy">
-                <hr />
-                <input type="button" value="EnableLight" id="btnEnableLight">
-                <input type="button" value="DisableLight" id="btnDisableLight">
-                <input type="button" value="Front" id="btnFront">
-                <input type="button" value="Back" id="btnBack">
-                <input type="button" value="Pause" id="btnPause">
-                <input type="button" value="Resume" id="btnResume">
-                <input type="button" value="Setting" id="btnSetting">
+                <input type="button" value="getCurrentPosition" id="btnGeolocationInfo">
+                <input type="button" value="watchPosition" id="btnWatchPosition">
+                <input type="button" value="clearWatch" id="btnClearWatch">
+            </div>
+            <div class="infolist">
+                <p>Device Motion info:</p>
+                <p id="info"></p>
             </div>
         </div>
-        <script type="text/javascript" src="js/index.js"></script>
     </body>
+    <script type="text/javascript" src="js/devicemotion.js"></script>
 </html>
