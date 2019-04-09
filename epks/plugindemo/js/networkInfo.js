@@ -17,6 +17,10 @@
  * under the License.
  */
 
+var netInfo = document.getElementById("netinfo");
+
+
+
 function networkInfo() {
    var networkState = navigator.connection.type;
    var states = {};
@@ -30,15 +34,15 @@ function networkInfo() {
    states[Connection.CELL]     = 'Cell generic connection';
    states[Connection.NONE]     = 'No network connection';
 
-   alert('Connection type: ' + states[networkState]);
+   netInfo.innerHTML += 'Connection type: ' + states[networkState] + '<br>';
 }
 
 function onOffline() {
-   alert('You are now offline!');
+   netInfo.innerHTML += 'You are now offline!<br>';
 }
 
 function onOnline() {
-   alert('You are now online!');
+   netInfo.innerHTML += 'You are now online!<br>';
 }
 
 
@@ -48,6 +52,15 @@ var app = {
         document.getElementById("networkInfo").addEventListener("click", networkInfo);
         document.addEventListener("offline", onOffline, false);
         document.addEventListener("online", onOnline, false);
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
+
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function() {
+        networkInfo();
     },
 };
 

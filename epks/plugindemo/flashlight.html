@@ -28,18 +28,21 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+<!--         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="msapplication-tap-highlight" content="no"> -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <script src="file:///android_asset/www/cordova.js"></script>
+        <script type="text/javascript" src="assets://www/cordova.js"></script>
+<!--         <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery.mobile-1.4.5.js"></script> -->
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
         <title>Hello World</title>
     </head>
     <body>
         <div data-role="header" role="banner" class="ui-header ui-bar-inherit" data-position="fixed">
-            <h1 class="ui-title" role="heading" aria-level="1">Elastos Trinity Flashlight</h1>
+            <h1 class="ui-title" role="heading" aria-level="1">Flashlight</h1>
             <a href="index.html" class="ui-btn-left ui-btn ui-icon-arrow-l ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button"
                 role="button"></a>
         </div>

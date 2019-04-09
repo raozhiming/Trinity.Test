@@ -18,6 +18,14 @@
  */
 
 
+function onLauncher() {
+    appService.launcher();
+}
+
+function onClose() {
+    appService.close();
+}
+
 var app = {
     // Application Constructor
     initialize: function() {

@@ -24,7 +24,7 @@ var myMedia = null;
 var volumeValue = 0.5;
 
 function playAudio() {
-    var src = "/background.mp3";
+    var src = "audio/background.mp3";
 
     if(myMedia === null) {
         myMedia = new Media(src, onSuccess, onError);

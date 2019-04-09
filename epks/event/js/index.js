@@ -40,8 +40,6 @@ var app = {
         document.addEventListener('resume', this.onResume, false);
         document.addEventListener('menubutton', this.onMenuKeyDown, false);
 
-        console.log("onDeviceReady 11111111!");
-
         var success = function (ret) {
             console.log("getAppList success:" + ret.toString());
         };
@@ -49,20 +47,21 @@ var app = {
             console.log("getAppList fail!");
         };
         appManager.getAppList(success, error);
-
-        console.log("onDeviceReady 22222222!");
     },
 
     onPause: function() {
         insertEventInfo("pause");
+        console.log(" ---- onPause ----");
     },
 
     onResume: function() {
         insertEventInfo("resume");
+        console.log(" ---- onresume ----");
     },
 
     onMenuKeyDown: function() {
         insertEventInfo("menubutton");
+        console.log(" ---- onMenuKeyDown ----");
     },
 };
 

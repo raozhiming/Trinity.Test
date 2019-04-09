@@ -17,6 +17,22 @@
  * under the License.
  */
 
+var fileInfo = document.getElementById("fileinfo");
+
+function onSuccess(mediaFiles) {
+    var i, path, len;
+
+    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+       path = mediaFiles[i].fullPath;
+       fileInfo.innerHTML += path + '<br>';
+    }
+ }
+
+function onError(error) {
+    navigator.notification.alert('Error code: ' + error.code, null, error);
+    // fileInfo += 'Error code: ' + error.code, null, 'Capture Error' + '<br>';
+ }
+
 function audioCapture() {
 
    var options = {
@@ -25,20 +41,6 @@ function audioCapture() {
    };
 
    navigator.device.capture.captureAudio(onSuccess, onError, options);
-
-   function onSuccess(mediaFiles) {
-      var i, path, len;
-
-      for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-         path = mediaFiles[i].fullPath;
-         console.log(mediaFiles);
-      }
-   }
-
-   function onError(error) {
-      navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-   }
-
 }
 
 function imageCapture() {
@@ -48,20 +50,6 @@ function imageCapture() {
    };
 
    navigator.device.capture.captureImage(onSuccess, onError, options);
-
-   function onSuccess(mediaFiles) {
-      var i, path, len;
-
-      for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-         path = mediaFiles[i].fullPath;
-         console.log(mediaFiles);
-      }
-   }
-
-   function onError(error) {
-      navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-   }
-
 }
 
 function videoCapture() {
@@ -72,20 +60,6 @@ function videoCapture() {
    };
 
    navigator.device.capture.captureVideo(onSuccess, onError, options);
-
-   function onSuccess(mediaFiles) {
-      var i, path, len;
-
-      for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-         path = mediaFiles[i].fullPath;
-         console.log(mediaFiles);
-      }
-   }
-
-   function onError(error) {
-      navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-   }
-
 }
 
 

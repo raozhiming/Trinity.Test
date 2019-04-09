@@ -30,7 +30,7 @@ var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
         document.getElementById('btnDeviceInfo').addEventListener('click', getDeviceInfo);
-
+        console.log("---device----");
     },
 
     // deviceready Event Handler
