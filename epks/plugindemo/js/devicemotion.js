@@ -44,7 +44,7 @@ function getCurrentAcceleration() {
 
     function onSuccess(acceleration) {
         var dateStr = timeStamp2String(acceleration.timestamp);
-        info.innerHTML=
+        info.innerHTML =
                 'x: '          + acceleration.x + '<br>' +
                 'y: '          + acceleration.y + '<br>' +
                 'z: '          + acceleration.z + '<br>' +
@@ -54,8 +54,8 @@ function getCurrentAcceleration() {
     // onError Callback receives a PositionError object
     //
     function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
+        info.innerHTML = 'code: '    + error.code    + '<br>' +
+              'message: ' + error.message;
     }
 }
 
@@ -101,8 +101,8 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        document.getElementById('btnGeolocationInfo').addEventListener('click', getCurrentAcceleration);
-        document.getElementById('btnWatchPosition').addEventListener('click', watchAcceleration);
+        document.getElementById('btnGetAcceleration').addEventListener('click', getCurrentAcceleration);
+        document.getElementById('btnWatch').addEventListener('click', watchAcceleration);
         document.getElementById('btnClearWatch').addEventListener('click', clearWatch);
 
         this.receivedEvent('deviceready');

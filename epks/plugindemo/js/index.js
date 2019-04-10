@@ -38,7 +38,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
-        console.log('-----------------onDeviceReady-------------\n\n\n------------');
+        console.log('-----------------onDeviceReady-------------');
     },
 
     // Update DOM on a Received Event
