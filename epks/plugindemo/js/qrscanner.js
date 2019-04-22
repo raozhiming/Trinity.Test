@@ -17,6 +17,10 @@
 * under the License.
 */
 
+function showQRCode(content) {
+    document.getElementById("qrcode").innerHTML=content;
+}
+
 function showStatus(status) {
     s = "authorized:" + status.authorized + '<br>' +
         "denied:" + status.authorized + '<br>' +
@@ -53,6 +57,8 @@ function startScan() {
             }
         }
         console.log('The QR Code contains: ' + contents);
+        showQRCode(contents);
+        destroy();
     }
 
     window.QRScanner.scan(callback);
