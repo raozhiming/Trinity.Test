@@ -17,9 +17,10 @@
  * under the License.
  */
 
- var dirInfo = document.getElementById("dirinfo");
+var dirInfo = document.getElementById("dirinfo");
+var fileSystem;
 
- function showInfo(arg, append=false) {
+function showInfo(arg, append=false) {
     if (append) {
         dirInfo.innerHTML+=arg;
     }
@@ -127,7 +128,7 @@ function createDirs(type, dirname) {
 
         break;
         default:
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs) {
+            window.resolveLocalFileSystemURL(fileSystem, function(fs) {
                 fs.getDirectory(dirname, {create: true}, createDirCallback, errorHandler);
             }, errorHandler);
     }
@@ -147,7 +148,7 @@ function removeFile(type, fielname) {
 
         break;
         default:
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs) {
+            window.resolveLocalFileSystemURL(fileSystem, function(fs) {
                 fs.getFile(fielname, {create: false}, removeFileCallback, errorHandler);
             }, errorHandler);
     }
@@ -169,7 +170,7 @@ function listDir(type) {
             }, errorHandler);
         break;
         default:
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs) {
+            window.resolveLocalFileSystemURL(fileSystem, function(fs) {
                 var fileReader = fs.createReader();
                 fileReader.readEntries(readEntriesCallback);
             }, errorHandler);
@@ -190,15 +191,15 @@ function createDirsPersistent() {
 }
 
 function removeFileLocal() {
-    removeFile(2, "log-local.txt");
+    removeFile(2, "local-test.txt");
 }
 
 function removeFileTemp() {
-    removeFile(0, "log-temp.txt");
+    removeFile(0, "temp-test.txt");
 }
 
 function removeFilePersistent() {
-    removeFile(1, "log-persistent.txt");
+    removeFile(1, "persistent-test.txt");
 }
 
 function listDirLocal() {
@@ -232,8 +233,8 @@ function openAndWrite(type, filename, content){
             }, errorHandler);
         break;
         default:
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (fs) {
-                showInfo('open file system: ' + cordova.file.dataDirectory + '<br>');
+            window.resolveLocalFileSystemURL(fileSystem, function (fs) {
+                showInfo('open file system: ' + fileSystem + '<br>');
                 fs.getFile(filename, { create: true }, function (fileEntry) {
                       writeFile(fileEntry, content, 1);
                 }, errorHandler);
@@ -256,8 +257,8 @@ function openAndRead(type, filename){
             }, errorHandler);
         break;
         default:
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (fs) {
-                showInfo('open file system: ' + cordova.file.dataDirectory + '<br>');
+            window.resolveLocalFileSystemURL(fileSystem, function (fs) {
+                showInfo('open file system: ' + fileSystem + '<br>');
                 fs.getFile(filename, { create: false }, readFile, errorHandler);
             });
     }
@@ -299,6 +300,42 @@ function temporaryInfo() {
     });
 }
 
+function setLocalFileSystem(value) {
+    fileSystem = value;
+}
+
+function useAppDir() {
+    setLocalFileSystem(cordova.file.applicationDirectory);
+}
+
+function useStorageDir() {
+    setLocalFileSystem(cordova.file.applicationStorageDirectory);
+}
+
+function useDataDir() {
+    setLocalFileSystem(cordova.file.dataDirectory);
+}
+
+function useExDataDir() {
+    setLocalFileSystem(cordova.file.externalDataDirectory);
+}
+
+function useCacheDir() {
+    setLocalFileSystem(cordova.file.cacheDirectory);
+}
+
+function useExStorageDir() {
+    setLocalFileSystem(cordova.file.externalApplicationStorageDirectory);
+}
+
+function useExCacheDir() {
+    setLocalFileSystem(cordova.file.externalCacheDirectory);
+}
+
+function useExRootDir() {
+    setLocalFileSystem(cordova.file.externalRootDirectory);
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -323,6 +360,16 @@ var app = {
         // document.getElementById("PERSISTENT").addEventListener("click", persistentInfo);
 
         document.getElementById("info").addEventListener("click", showVariable);
+
+
+        document.getElementById("applicationDirectory").addEventListener("click", useAppDir);
+        document.getElementById("applicationStorageDirectory").addEventListener("click", useStorageDir);
+        document.getElementById("dataDirectory").addEventListener("click", useDataDir);
+        document.getElementById("externalDataDirectory").addEventListener("click", useExDataDir);
+        document.getElementById("cacheDirectory").addEventListener("click", useCacheDir);
+        document.getElementById("externalApplicationStorageDirectory").addEventListener("click", useExStorageDir);
+        document.getElementById("externalCacheDirectory").addEventListener("click", useExCacheDir);
+        document.getElementById("externalRootDirectory").addEventListener("click", useExRootDir);
     },
 };
 

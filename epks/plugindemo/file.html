@@ -45,8 +45,17 @@
         </div>
         <div class="app">
             <img id="icon" src="img/logo.png" class="icon"/>
-            <div class="controlGroup">
+<!--             <div class="controlGroup"> -->
                 <p class="infolist">LocalFileSystem:</p>
+                <input type="radio" name="file" id="applicationDirectory">application
+                <input type="radio" name="file" id="applicationStorageDirectory">applicationStorage
+                <input type="radio" name="file" id="dataDirectory">data
+                <input type="radio" name="file" id="externalDataDirectory">externalData
+                <input type="radio" name="file" id="cacheDirectory">cache
+                <input type="radio" name="file" id="externalApplicationStorageDirectory">externalApplicationStorage
+                <input type="radio" name="file" id="externalCacheDirectory">externalCache
+                <input type="radio" name="file" id="externalRootDirectory">externalRoot
+                <hr />
                 <button id = "writelocal">Write</button>
                 <button id = "readlocal">Read</button>
                 <button id = "deletelocal">Delete</button>
@@ -71,7 +80,7 @@
 
                 <p class="infolist">Info:</p>
                 <button id = "info">Dir Info</button>
-            </div>
+            <!-- </div> -->
             <div>
                 <p style="word-break:break-all" id="dirinfo"></p>
             </div>
