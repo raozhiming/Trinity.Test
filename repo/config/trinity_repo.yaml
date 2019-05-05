@@ -62,7 +62,7 @@ repo:
   Elastos.Trinity.Plugins.Carrier:
     url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Carrier.git
     workbranch: dev
-    mergeto: trinity
+    mergeto: master
     forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Carrier.git
 
 
@@ -159,7 +159,7 @@ repo:
   Elastos.Trinity.Plugins.Wallet:
     url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Wallet.git
     workbranch: dev
-    mergeto: trinity
+    mergeto: master
     forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Wallet.git
 
 #  Elastos.Trinity.Plugins.Whitelist:
