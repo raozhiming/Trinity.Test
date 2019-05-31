@@ -28,7 +28,7 @@ def run_cmd(cmd, ignore_error=False):
 
 
 def update_repo(dirname, branch, forkform=None):
-    print("update_repo")
+    print("update_repo branch:" + branch)
     os.chdir(dirname)
 
     if forkform:

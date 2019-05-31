@@ -35,6 +35,12 @@ repo:
     mergeto: master
     forkfrom: git@github.com:elastos/Elastos.Trinity.Runtime.Plugins.AppService.git
 
+  Elastos.Trinity.Plugins.Carrier:
+    url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Carrier.git
+    workbranch: dev
+    mergeto: master
+    forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Carrier.git
+
   Elastos.Trinity.Runtime.Plugins.PluginDemo:
     url: git@github.com:raozhiming/Elastos.Trinity.Runtime.Plugins.PluginDemo.git
     workbranch: dev
@@ -43,7 +49,8 @@ repo:
 
   Elastos.Trinity.ToolChains:
     url: git@github.com:raozhiming/Elastos.Trinity.ToolChains.git
-    workbranch: master
+    workbranch: dev
+    mergeto: master
     forkfrom: git@github.com:elastos/Elastos.Trinity.ToolChains.git
 
 # fork form cordova
@@ -58,13 +65,6 @@ repo:
     workbranch: dev
     mergeto: trinity
     forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Camera.git
-
-  Elastos.Trinity.Plugins.Carrier:
-    url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Carrier.git
-    workbranch: dev
-    mergeto: master
-    forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Carrier.git
-
 
   Elastos.Trinity.Plugins.Device:
     url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Device.git
@@ -159,11 +159,5 @@ repo:
   Elastos.Trinity.Plugins.Wallet:
     url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Wallet.git
     workbranch: dev
-    mergeto: master
+    mergeto: trinity
     forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Wallet.git
-
-#  Elastos.Trinity.Plugins.Whitelist:
-#    url: git@github.com:raozhiming/Elastos.Trinity.Plugins.Whitelist.git
-#    workbranch: dev
-#    mergeto: trinity
-#    forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Whitelist.git
