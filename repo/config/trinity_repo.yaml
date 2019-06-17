@@ -161,3 +161,10 @@ repo:
     workbranch: dev
     mergeto: trinity
     forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.Wallet.git
+
+  Elastos.Trinity.Plugins.IonicWebView:
+    url: git@github.com:raozhiming/Elastos.Trinity.Plugins.IonicWebView.git
+    workbranch: dev
+    mergeto: trinity
+    forkfrom: git@github.com:elastos/Elastos.Trinity.Plugins.IonicWebView.git
+

@@ -124,7 +124,7 @@ repo:
     workbranch: dev
     mergeto: trinity
 
-#  Elastos.Trinity.Plugins.Whitelist:
-#    url: git@github.com:elastos/Elastos.Trinity.Plugins.Whitelist.git
-#    workbranch: dev
-#    mergeto: trinity
+  Elastos.Trinity.Plugins.IonicWebView:
+    url: git@github.com:elastos/Elastos.Trinity.Plugins.IonicWebView.git
+    workbranch: dev
+    mergeto: trinity
