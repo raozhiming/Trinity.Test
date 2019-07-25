@@ -1,11 +1,11 @@
 repo:
-  Elastos.Trinity:
-    url: git@github.com:elastos/Elastos.Trinity.git
+  Elastos.Trinity.DApps.Launcher:
+    url: git@github.com:elastos/Elastos.Trinity.DApps.Launcher.git
     workbranch: dev
     mergeto: master
 
-  Elastos.Trinity.DApps.Launcher:
-    url: git@github.com:elastos/Elastos.Trinity.DApps.Launcher.git
+  Elastos.Trinity.DApps.Wallet:
+    url: git@github.com:elastos/Elastos.Trinity.DApps.Wallet.git
     workbranch: dev
     mergeto: master
 
@@ -26,6 +26,11 @@ repo:
 
   Elastos.Trinity.Plugins.Carrier:
     url: git@github.com:elastos/Elastos.Trinity.Plugins.Carrier.git
+    workbranch: dev
+    mergeto: master
+
+  Elastos.Trinity.Plugins.Wallet:
+    url: git@github.com:elastos/Elastos.Trinity.Plugins.Wallet.git
     workbranch: dev
     mergeto: master
 
@@ -128,3 +133,9 @@ repo:
     url: git@github.com:elastos/Elastos.Trinity.Plugins.IonicWebView.git
     workbranch: dev
     mergeto: trinity
+
+  Elastos.Trinity:
+    url: git@github.com:elastos/Elastos.Trinity.git
+    workbranch: dev
+    mergeto: master
+
