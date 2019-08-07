@@ -41,7 +41,8 @@ repo:
 
   Elastos.Trinity.ToolChains:
     url: git@github.com:elastos/Elastos.Trinity.ToolChains.git
-    workbranch: master
+    workbranch: dev
+    mergeto: master
 
 # fork form cordova
   Elastos.Trinity.Plugins.BatteryStatus:
