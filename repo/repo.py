@@ -41,6 +41,9 @@ def update_repo(dirname, branch, forkform=None):
         cmd = "git push origin " + branch
         run_cmd(cmd)
     else:
+        cmd = "git checkout " + branch
+        run_cmd(cmd)
+
         cmd = "git pull"
         run_cmd(cmd)
 
