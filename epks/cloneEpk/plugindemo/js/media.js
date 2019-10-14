@@ -47,7 +47,7 @@ function playAudio() {
         var dur = myMedia.getDuration();
         if (dur > 0) {
             clearInterval(timerDur);
-            durationInfo.innerHTML = (dur) + " sec";
+            durationInfo.innerHTML = dur + " sec";
         }
     }, 100);
 

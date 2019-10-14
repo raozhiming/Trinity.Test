@@ -48,7 +48,8 @@ var commands = [
     { cmd: "start", fn: start_dapp, help: "start 1|2|id" },
     { cmd: "getinfo", fn: get_appinfo, help: "getinfo" },
     { cmd: "send", fn: sendmessage, help: "send 1|2|id" },
-    { cmd: "intent", fn: intent, help: "intent action address amount" }
+    { cmd: "intent", fn: intent, help: "intent action address amount" },
+    { cmd: "intenturl", fn: intenturl, help: "intenturl url" }
 ]
 
 function do_command(input) {
@@ -159,7 +160,7 @@ function intent(argv) {
     }
 
     parames.toAddress = argv[2];
-    parames.amount = parse(argv[3]);
+    parames.amount = parseFloat(argv[3]);
     parames.memo = "for test";
 
     var success = function (info) {
@@ -169,6 +170,21 @@ function intent(argv) {
         display_others_msg("sendIntent failed: " + error + ".");
     };
     appService.sendIntent("pay", parames, success, error);
+}
+
+function intenturl(argv) {
+    if (argv.length != 2) {
+        display_others_msg("Invalid command syntax. intenturl url");
+        return;
+    }
+
+    var success = function (info) {
+        display_others_msg("sendUrlIntent result." + info.result);
+    };
+    var error = function (error) {
+        display_others_msg("sendUrlIntent failed: " + error + ".");
+    };
+    appService.sendUrlIntent(argv[1]);
 }
 
 function onReceive(ret) {

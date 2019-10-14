@@ -1,6 +1,7 @@
 {
   "id": "org.elastos.trinity.appservicetestA",
   "version": "0.0.1",
+  "version_code": 100,
   "name": "serviceTestA",
   "short_name": "serviceTestA",
   "description": "service Test",

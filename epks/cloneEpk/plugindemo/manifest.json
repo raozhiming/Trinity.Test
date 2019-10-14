@@ -1,7 +1,7 @@
 {
-  "id": "org.elastos.trinity.plugindemo19",
+  "id": "org.elastos.trinity.plugindemo",
   "version": "0.0.1",
-  "name": "plugindemo19",
+  "name": "plugindemo",
   "short_name": "plugindemo",
   "description": "plugindemo Test",
   "start_url": "index.html",
@@ -18,7 +18,7 @@
     }
   ],
   "author": {
-  "name": "plugindemo19",
+      "name": "raozhiming",
       "email": "raozhiming@elastos.org"
   },
   "default_locale": "en",
