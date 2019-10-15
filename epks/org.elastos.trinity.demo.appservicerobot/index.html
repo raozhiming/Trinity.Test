@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="asset://www/cordova.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+<div class="app">
+    <div data-role="header" role="banner" class="ui-header ui-bar-inherit" data-position="fixed">
+        <h1 class="ui-title" role="heading" aria-level="1">Appservice Robot</h1>
+        <a href="javascript:onLauncher()" class="ui-btn-left ui-btn ui-icon-home ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button"
+           role="button"></a>
+        <a href="javascript:onClose()" class="ui-btn-right ui-btn ui-icon-delete ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button"
+           role="button"></a>
+    </div>
+    <div id="deviceready" class="blink">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
+    <div class="eventlist">
+        <p>Receive Info:</p>
+        <p style="word-break:break-all" id="testinfo"></p>
+    </div>
+</div>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

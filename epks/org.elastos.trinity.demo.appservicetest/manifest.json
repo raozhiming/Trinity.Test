@@ -1,14 +1,14 @@
 {
-  "id": "org.elastos.trinity.demo.appservice",
+  "id": "org.elastos.trinity.demo.appservicetest",
   "version": "0.0.2",
   "version_code": 1,
-  "name": "Service Demo",
-  "short_name": "appservice",
+  "name": "AppserviceTest",
+  "short_name": "servicetest",
   "description": "My appservice sample",
   "start_url": "index.html",
   "icons": [
     {
-        "src": "img/logo.png",
+        "src": "img/avatar02.png",
         "sizes": "512x512",
         "type": "image/png"
     }
@@ -18,7 +18,9 @@
       "email": ""
   },
   "default_locale": "en",
-  "plugins": [],
+  "plugins": [
+      "CarrierPlugin"
+  ],
   "intents": [
     "mytest://*"
   ],

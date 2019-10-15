@@ -20,171 +20,117 @@
 // SOFTWARE.
 //
 
-function set_msg(side, avatar, content) {
-    var data = new Date();
-    var msg = '<li class="' + side + '">' +
-        '<a class="user" href="#">' +
-        '<img class="img-responsive avatar_" src="./img/' + avatar + '.png" alt=""></a>' +
-        '<div class="reply-content-box">' +
-        '<span class="reply-time">' + data.toLocaleTimeString() + '</span>' +
-        '<div class="reply-content pr"><span class="arrow">&nbsp;</span>' +
-        content + '</div></div></li>';
-    $("#msg_content").append(msg);
-    $("html, body").animate({ scrollTop: $(document).height()}, "slow");
+
+
+var testinfo = document.getElementById("testinfo");
+var cmdinfo = document.getElementById("cmdinfo");
+var appidOption = document.getElementById("appid");
+var intentOption = document.getElementById("intent");
+var intenturlOption = document.getElementById("intenturl");
+var args = document.getElementById("args");
+var methond = "";
+
+function showCmdInfo() {
+    cmdinfo.innerHTML = "Methond:" + methond + "<br>args:";
 }
 
-function display_me_msg(content) {
-    set_msg("me", "avatar", content);
+function showTestInfo(info) {
+    testinfo.innerHTML = info;
 }
 
-function display_others_msg(content) {
-    set_msg("other", "avatar_rob", content);
-}
+function showOption(option) {
+    appidOption.style.display = "none";
+    intentOption.style.display = "none";
+    intenturlOption.style.display = "none";
 
-var commands = [
-    { cmd: "help", fn: help, help: "help [cmd]" },
-
-    { cmd: "getlocale", fn: get_locale, help: "getlocale" },
-    { cmd: "start", fn: start_dapp, help: "start 1|2|id" },
-    { cmd: "getinfo", fn: get_appinfo, help: "getinfo" },
-    { cmd: "send", fn: sendmessage, help: "send 1|2|id" },
-    { cmd: "intent", fn: intent, help: "intent action address amount" },
-    { cmd: "intenturl", fn: intenturl, help: "intenturl url" }
-]
-
-function do_command(input) {
-    var args = input.trim().match(/[^\s"]+|"([^"]*)"/g);
-    if (!args || args[0] == "") {
-        return;
-    }
-
-    args[0] = args[0].toLowerCase()
-
-    for (var i = 0; i < commands.length; i++) {
-        if (commands[i].cmd == args[0]) {
-            commands[i].fn(args);
-            return;
-        }
-    }
-    display_others_msg("Unknown command:" + args[0]);
-}
-
-function help(args) {
-    if (args.length > 1) {
-        for (var i = 0; i < commands.length; i++) {
-            if (commands[i].cmd == args[1]) {
-                display_others_msg("Usage: :" + commands[i].help);
-                return;
-            }
-        }
-        display_others_msg("Usage: :" + commands[0].help);
-    }
-    else {
-        var msg = "Available commands list: </br>"
-        for (var i = 0; i < commands.length; i++) {
-            msg += "&nbsp;&nbsp;" + commands[i].help + "</br>";
-        }
-        display_others_msg(msg);
-    }
-}
-
-function get_appid_from_argv(arg) {
-    var  appId = arg;
-    if (arg == "1") {
-        appId = "org.elastos.trinity.blockchain";
-    }
-    else if (arg == "2") {
-        appId = "org.elastos.trinity.dapp.wallet";
-    }
-    return appId;
+    if (option != "") option.style.display = "block";
 }
 
 function get_locale(argv) {
     var success = function (info) {
-        display_others_msg("get_locale." + info);
+        showTestInfo("get_locale." + info);
     };
     appService.get_locale(success);
 }
 
 function get_appinfo(argv) {
     var success = function (info) {
-        display_others_msg("getAppInfo." + info);
+        showTestInfo("getAppInfo." + info);
     };
     appService.getAppInfo(success);
 }
 
 function start_dapp(argv) {
-    if (argv.length != 2) {
-        display_others_msg("Invalid command syntax.");
-        return;
-    }
-
-    var appId = get_appid_from_argv(argv[1]);
-
     var success = function (info) {
-        display_others_msg("start " + appId + " success.");
+        showTestInfo("start " + argv[0] + " success.");
     };
     var error = function (error) {
-        display_others_msg("start " + appId + " failed: " + error + ".");
+        showTestInfo("start " + argv[0] + " failed: " + error + ".");
     };
-    appService.start(appId, success, error);
+    appService.start(argv[0], success, error);
 }
 
 function sendmessage(argv) {
-    if (argv.length != 4) {
-        display_others_msg("Invalid command syntax.");
-        return;
-    }
-
-    var appId = get_appid_from_argv(argv[1]);
-
     var success = function (info) {
-        display_others_msg("sendMessage " + appId + " success.");
+        showTestInfo("sendMessage " + argv[0] + " success.");
     };
     var error = function (error) {
-        display_others_msg("sendMessage " + appId + " failed: " + error + ".");
+        showTestInfo("sendMessage " + argv[0] + " failed: " + error + ".");
     };
-    appService.sendMessage(appId, argv[2], argv[3], success, error);
+    appService.sendMessage(argv[0], argv[1], argv[2], success, error);
 }
 
-var parames = {
+var payParames = {
     toAddress: "Exxxxxxxxxxx",
     amount:100,
     memo: "just test momo"
 }
 
+var chatParames = {
+    toAddress: "Exxxxxxxxxxx",
+    message:""
+}
+
 function intent(argv) {
-    if (argv.length != 4) {
-        display_others_msg("Invalid command syntax.");
-        return;
+    var parames;
+
+    if ("pay" == argv[0]) {
+        if (argv.length < 4) {
+            showTestInfo("pay toAddress amount memo");
+            return;
+        }
+        payParames.toAddress = argv[1];
+        payParames.amount = parseFloat(argv[2]);
+        payParames.memo = argv[3];
+        parames = payParames;
+    }
+    else {
+        if (argv.length < 3) {
+            showTestInfo("chat toAddress message");
+            return;
+        }
+        chatParames.toAddress = argv[1];
+        chatParames.message = argv[2];
+        parames = chatParames;
     }
 
-    parames.toAddress = argv[2];
-    parames.amount = parseFloat(argv[3]);
-    parames.memo = "for test";
-
     var success = function (info) {
-        display_others_msg("sendIntent result." + info.result);
+        showTestInfo("sendIntent result." + info.result);
     };
     var error = function (error) {
-        display_others_msg("sendIntent failed: " + error + ".");
+        showTestInfo("sendIntent failed: " + error + ".");
     };
-    appService.sendIntent("pay", parames, success, error);
+    appService.sendIntent(argv[0], parames, success, error);
 }
 
 function intenturl(argv) {
-    if (argv.length != 2) {
-        display_others_msg("Invalid command syntax. intenturl url");
-        return;
-    }
-
     var success = function (info) {
-        display_others_msg("sendUrlIntent result." + info.result);
+        showTestInfo("sendUrlIntent result." + info.result);
     };
     var error = function (error) {
-        display_others_msg("sendUrlIntent failed: " + error + ".");
+        showTestInfo("sendUrlIntent failed: " + error + ".");
     };
-    appService.sendUrlIntent(argv[1]);
+    appService.sendUrlIntent(argv[0]);
 }
 
 function onReceive(ret) {
@@ -193,7 +139,7 @@ function onReceive(ret) {
     if (typeof (params) == "string") {
         params = JSON.parse(params);
     }
-    display_others_msg(params);
+    showTestInfo(params);
 }
 
 function onReceiveIntent(ret) {
@@ -202,7 +148,7 @@ function onReceiveIntent(ret) {
     if (typeof (params) == "string") {
         params = JSON.parse(params);
     }
-    display_others_msg(params);
+    showTestInfo(params);
 }
 
 function onLauncher() {
@@ -213,6 +159,86 @@ function onClose() {
     appService.close();
 }
 
+function Click() {
+    showTestInfo("");
+
+    strs = args.value.split(" ");
+
+    switch (methond) {
+        case "Start":
+            start_dapp(strs);
+        break;
+        case "SendMessage":
+            sendmessage(strs);
+        break;
+        case "SendIntent":
+            intent(strs);
+        break;
+        case "SendIntentByUrl":
+            intenturl(strs);
+        break;
+        default:
+        break;
+    }
+}
+
+function Start() {
+    methond = "Start";
+    showCmdInfo();
+    showOption(appidOption);
+}
+
+function SendMsg() {
+    methond = "SendMessage";
+    showCmdInfo();
+    showOption(appidOption);
+}
+
+function Intent() {
+    methond = "SendIntent";
+    showCmdInfo();
+    showOption(intentOption);
+}
+
+
+function IntentUrl() {
+    methond = "SendIntentByUrl";
+    showCmdInfo();
+    showOption(intenturlOption);
+}
+
+function SelectWallet() {
+    args.value = "org.elastos.trinity.dapp.wallet";
+}
+
+function SelectBlockchain() {
+    args.value = "org.elastos.trinity.blockchain";
+}
+
+function SelectPayAction() {
+    args.value = "pay Exxxxx  100 fortest";
+}
+
+function SelectChatAction() {
+    args.value = "chat address helloworld";
+}
+
+function SelectElastosUrl() {
+    args.value = "elastos:///chat?toAddress=Exxxx&amount=100&memo=helloworld";
+}
+
+function SelectMailtoUrl() {
+    args.value = "mailto:test@elastos.org";
+}
+
+function SelectTelUrl() {
+    args.value = "tel:10086";
+}
+
+function SelectSmsUrl() {
+    args.value = "sms:10086";
+}
+
 var app = {
     // Application Constructor
     initialize: function () {
@@ -220,20 +246,34 @@ var app = {
     },
 
     onDeviceReady: function () {
+        var parentElement = document.getElementById('deviceready');
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        document.getElementById('btnClick').addEventListener('click', Click);
+
+        document.getElementById('btnStart').addEventListener('click', Start);
+        document.getElementById('btnSendMsg').addEventListener('click', SendMsg);
+        document.getElementById('btnIntent').addEventListener('click', Intent);
+        document.getElementById('btnIntentUrl').addEventListener('click', IntentUrl);
+
+        document.getElementById('wallet').addEventListener('click', SelectWallet);
+        document.getElementById('blockchain').addEventListener('click', SelectBlockchain);
+
+        document.getElementById('pay').addEventListener('click', SelectPayAction);
+        document.getElementById('chat').addEventListener('click', SelectChatAction);
+
+        document.getElementById('url_elastos').addEventListener('click', SelectElastosUrl);
+        document.getElementById('url_mailto').addEventListener('click', SelectMailtoUrl);
+        document.getElementById('url_sms').addEventListener('click', SelectSmsUrl);
+        document.getElementById('url_tel').addEventListener('click', SelectTelUrl);
+
+
         appService.setListener(onReceive);
         appService.setIntentListener(onReceiveIntent);
-        do_command("help");
-        $("input").focus();
-        $("input").bind('keypress', function (event) {
-            if (event.keyCode == "13") {
-                var content = $('input').val()
-                if (content.trim() != "") {
-                    display_me_msg($('input').val());
-                    do_command($('input').val());
-                    $('input').val('');
-                }
-            }
-        });
     },
 };
 
