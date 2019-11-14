@@ -91,6 +91,10 @@ var chatParames = {
     message:""
 }
 
+var voteParames = {
+    publicKeys: "",
+}
+
 function intent(argv) {
     var parames;
 
@@ -104,7 +108,7 @@ function intent(argv) {
         payParames.memo = argv[3];
         parames = payParames;
     }
-    else {
+    else if ("chat" == argv[0]) {
         if (argv.length < 3) {
             showTestInfo("chat toAddress message");
             return;
@@ -112,6 +116,12 @@ function intent(argv) {
         chatParames.toAddress = argv[1];
         chatParames.message = argv[2];
         parames = chatParames;
+    }
+    else {//dposvotetransaction
+        var keys = ["02a7a2fb2e95403b6c3b473b298fb975868d7a39dbffb91181ed4dd8cd85d87edb",
+                    "03d55285f06683c9e5c6b5892a688affd046940c7161571611ea3a98330f72459f"];
+        voteParames.publicKeys = JSON.stringify(keys);
+        parames = voteParames;
     }
 
     var success = function (info) {
@@ -165,9 +175,9 @@ function Click() {
     strs = args.value.split(" ");
 
     switch (methond) {
-        case "Start":
-            start_dapp(strs);
-        break;
+//        case "Start":
+//            start_dapp(strs);
+//        break;
         case "SendMessage":
             sendmessage(strs);
         break;
@@ -182,11 +192,11 @@ function Click() {
     }
 }
 
-function Start() {
-    methond = "Start";
-    showCmdInfo();
-    showOption(appidOption);
-}
+//function Start() {
+//    methond = "Start";
+//    showCmdInfo();
+//    showOption(appidOption);
+//}
 
 function SendMsg() {
     methond = "SendMessage";
@@ -223,6 +233,10 @@ function SelectChatAction() {
     args.value = "chat address helloworld";
 }
 
+function SelectVoteAction() {
+    args.value = "dposvotetransaction";
+}
+
 function SelectElastosUrl() {
     args.value = "elastos:///chat?toAddress=Exxxx&amount=100&memo=helloworld";
 }
@@ -255,7 +269,6 @@ var app = {
 
         document.getElementById('btnClick').addEventListener('click', Click);
 
-        document.getElementById('btnStart').addEventListener('click', Start);
         document.getElementById('btnSendMsg').addEventListener('click', SendMsg);
         document.getElementById('btnIntent').addEventListener('click', Intent);
         document.getElementById('btnIntentUrl').addEventListener('click', IntentUrl);
@@ -265,6 +278,7 @@ var app = {
 
         document.getElementById('pay').addEventListener('click', SelectPayAction);
         document.getElementById('chat').addEventListener('click', SelectChatAction);
+        document.getElementById('vote').addEventListener('click', SelectVoteAction);
 
         document.getElementById('url_elastos').addEventListener('click', SelectElastosUrl);
         document.getElementById('url_mailto').addEventListener('click', SelectMailtoUrl);
